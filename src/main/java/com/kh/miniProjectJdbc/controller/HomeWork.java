@@ -37,6 +37,8 @@ public class HomeWork {
     }
     @PostMapping("/update")
     public ResponseEntity<Boolean> update(@RequestBody Map<String, Object> param) {
+        // 객체로 받을 때는 @RequestBody ,
+        // 단일값 혹은 키-값의 쌍으로 이루어진 data는 @RequestParam
         boolean isSuccess = memberDAO.update(param);
         return ResponseEntity.ok(isSuccess);
     }
