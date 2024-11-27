@@ -1,10 +1,9 @@
 package com.kh.miniProjectJdbc.controller;
 
+import com.kh.miniProjectJdbc.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @Slf4j
@@ -19,4 +18,20 @@ public class RestTestController {
     public String getPathVariable(@PathVariable String number) {
         return "요청 받은 게시글 번호 : " + number;
     }
+    // 쿼리 형식으로 값을 전달하는 방식 (RequestParam)
+    @GetMapping("/search")
+    public String getRequestParam(
+            @RequestParam String name,
+            @RequestParam String email,
+            @RequestParam String password
+    ){
+        return "이름 : " + name + ", 이메일 : "
+                + email + ", 패스워드" + password;
+    }
+    // 쿼리형식으로 값을 전달하는데 객체로 받는 방식
+    @GetMapping("/search2")
+    public String getRequestParam2(MemberVO vo) {
+        return vo.toString();
+    }
+
 }
